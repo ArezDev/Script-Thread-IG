@@ -1,0 +1,414 @@
+javascript: if (window && window.trustedTypes && window.trustedTypes.defaultPolicy === null) {
+    if (window.trustedTypes && window.trustedTypes.createPolicy) {
+        window.trustedTypes.createPolicy('default', {
+            createHTML: (string, sink) => string
+        });
+    }
+}
+if (window.location.hostname.includes('threads.net') == true) {
+    void(function() {
+        const dc = document;
+
+        const audio_sukses = new Audio('/rsrc.php/yf/r/TNPmLer_j2q.ogg');
+        const audio_gagal = new Audio('/rsrc.php/y5/r/ouE5maL6ab4.ogg');
+        const audio_selesai = new Audio('/rsrc.php/yO/r/kTasEyE42gs.ogg');
+
+        const me = require('BarcelonaSharedData').viewer.id;
+        const lsd = require('LSD').token;
+        const app_id = require('RelayAPIConfigDefaults').customHeaders['X-IG-App-ID'];
+        const csrf_token = require('InstagramSecurityConfig').csrf_token;
+        const asyncParams = require('getAsyncParams')('POST');
+
+        let dv = dc.createElement('div');
+            dv.id = 'ngonoo';
+            dv.style = 'padding: 10px; border-radius: 2px; width: 500px; position: fixed; z-index: 9999; top: 10%; right: 10%; font-size: 12px; font-weight: 600; box-shadow: rgb(0, 0, 0) 0px 0px 5px; background-color: rgba(63, 191, 191, 0.8);';
+            dv.innerHTML += '<div style="text-align:center;border-radius:2px;padding:3px;background-color:white;font-weight:bold;">Tools Threads BY KATALIS - V2.0</div>';
+            dv.innerHTML += '<div id="div_btn" style="width:30%;float:left;margin-top:5px;padding:3px;background-color:white;"></div>';
+            dv.innerHTML += '<div id="div_html" style="width:67%;float:right;margin-top:5px;padding:3px;background-color:white;"></div>';
+        dc.body.appendChild(dv);
+
+        let h_btn = '<button name="btnMenu" id="btn1" onclick="dan.btn_panel(\'btn1\')" style="width:150px;margin-bottom:3px;text-align:center;padding:3px;border:1px solid rgb(88, 214, 141);background-color:rgb(88, 214, 141);"><b>Converter</b></button>';
+            h_btn += '<button name="btnMenu" id="btn2" onclick="dan.btn_panel(\'btn2\')" style="width:150px;margin-bottom:3px;text-align:center;padding:3px;border:1px solid rgb(240, 240, 240);background-color:rgb(240, 240, 240);"><b>Grab UID</b></button>';
+            h_btn += '<button name="btnMenu" id="btn3" onclick="dan.btn_panel(\'btn3\')" style="width:150px;margin-bottom:3px;text-align:center;padding:3px;border:1px solid rgb(240, 240, 240);background-color:rgb(240, 240, 240);"><b>Follow</b></button>';
+		    h_btn += '<button name="btnMenu" id="btn4" onclick="dan.btn_panel(\'btn4\')" style="width:150px;margin-bottom:3px;text-align:center;padding:3px;border:1px solid rgb(240, 240, 240);background-color:rgb(240, 240, 240);"><b>Delete Bio</b></button>';
+		    h_btn += '<button name="btnMenu" id="btn5" onclick="dan.btn_panel(\'btn5\')" style="width:150px;margin-bottom:3px;text-align:center;padding:3px;border:1px solid rgb(240, 240, 240);background-color:rgb(240, 240, 240);"><b>Delete Post</b></button>';
+            h_btn += '<button onclick="dan.klos()" style="width:150px;text-align:center;padding:3px;border:1px solid rgb(240, 240, 240);background-color:rgb(240, 240, 240);"><b style="color:red;">Close</b></button>';
+
+        let h_conv = '<div style="text-align:center;border-radius:2px;padding:3px;background-color:rgb(240, 240, 240);margin-bottom:3px;">Converter</div>';
+            h_conv += '<textarea id="inp" placeholder="Input Here" style="width:327px;height:150px;font-size:12px;resize:none;"></textarea>';
+            h_conv += '<button id="touid" onclick="dan.convert(\'touid\')" type="button" style="text-align:center;border:0px;border-radius:2px;padding:3px 10px;background-color:rgb(91, 168, 241);color:white;width:100px;"><b>To UID</b></button>';
+            h_conv += '<button id="touname" onclick="dan.convert(\'touname\')" type="button" style="text-align:center;border:0px;border-radius:2px;padding:3px 10px;background-color:rgb(91, 168, 241);color:white;width:100px;margin-left:10px;"><b>To Username</b></button>';
+            h_conv += '<div style="text-align:center;border-radius:2px;padding:3px;background-color:rgb(240, 240, 240);margin-top:4px;"><button style="width:50%;background-color:rgb(240, 240, 240);border:none;border-radius:2px;text-decoration:none;"><font id="process">0 / 0</font></button><button style="width:50%;background-color:rgb(240, 240, 240);border:none;border-radius:2px;text-decoration:none;"><font id="ok" style="color:green;">0</font> / <font id="err" style="color:red;">0</font></button></div>';
+            h_conv += '<textarea id="out" style="width:327px;margin-top:3px;height:150px;font-size:12px;resize:none;"></textarea>';
+
+        let h_grab = '<div style="text-align:center;border-radius:2px;padding:3px;background-color:rgb(240, 240, 240);margin-bottom:3px;">Grab UID</div>';
+            h_grab += '<textarea id="inp" placeholder="Input Here" style="width:327px;height:150px;font-size:12px;resize:none;"></textarea>';
+            h_grab += '<button id="followers" onclick="dan.grab(\'followers\')" type="button" style="text-align:center;border:0px;border-radius:2px;padding:3px 10px;background-color:rgb(91, 168, 241);color:white;"><b>Followers</b></button>';
+            h_grab += '<button id="following" onclick="dan.grab(\'following\')" type="button" style="text-align:center;border:0px;border-radius:2px;padding:3px 10px;background-color:rgb(91, 168, 241);color:white;margin-left:3px;"><b>Following</b></button>';
+            h_grab += '<button id="likers" onclick="dan.grab(\'likers\')" type="button" style="text-align:center;border:0px;border-radius:2px;padding:3px 10px;background-color:rgb(91, 168, 241);color:white;margin-left:3px;"><b>Likers</b></button>';
+            h_grab += '<div style="text-align:center;border-radius:2px;padding:3px;background-color:rgb(240, 240, 240);margin-top:5px;"><button style="width:50%;background-color:rgb(240, 240, 240);border:none;border-radius:2px;text-decoration:none;"><font id="process">0 / 0</font></button><button style="width:50%;background-color:rgb(240, 240, 240);border:none;border-radius:2px;text-decoration:none;"><font id="count">0</font></button></div>';
+            h_grab += '<textarea id="out" style="width:327px;margin-top:3px;height:150px;font-size:12px;resize:none;"></textarea>';
+
+        let h_foll = '<div style="text-align:center;border-radius:2px;padding:3px;background-color:rgb(240, 240, 240);margin-bottom:3px;">Follow</div>';
+            h_foll += '<textarea id="inp" placeholder="Input Here" style="width:327px;height:150px;font-size:12px;resize:none;"></textarea>';
+            h_foll += 'Delay : <select id="delay" style="width:70px;height:23px;text-align:center;"><option value="0.5" selected="">0.5</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>';
+            h_foll += '<button id="follow" onclick="dan.follow(\'follow\')" type="button" style="text-align:center;border:0px;border-radius:2px;padding:3px 10px;background-color:rgb(91, 168, 241);color:white;float:right;"><b>Follow</b></button>';
+            h_foll += '<div style="text-align:center;border-radius:2px;padding:3px;background-color:rgb(240, 240, 240);margin-top:4px;"><button style="width:50%;background-color:rgb(240, 240, 240);border:none;border-radius:2px;text-decoration:none;"><font id="process">0 / 0</font></button><button style="width:50%;background-color:rgb(240, 240, 240);border:none;border-radius:2px;text-decoration:none;"><font id="ok" style="color:green;">0</font> / <font id="err" style="color:red;">0</font></button></div>';
+            h_foll += '<textarea id="out" style="width:327px;margin-top:3px;height:150px;font-size:12px;resize:none;"></textarea>';
+
+		let h_dellbio = '<div style="text-align:center;border-radius:2px;padding:3px;background-color:rgb(240, 240, 240);margin-bottom:3px;">Delete Bio</div>';
+		    h_dellbio += '<div style="text-align:center;border-radius:2px;padding:3px;background-color:rgb(240, 240, 240);margin-top:4px;"><button style="width:100%;background-color:rgb(240, 240, 240);border:none;border-radius:2px;text-decoration:none;"><font id="process">~~</font></button></div>';
+
+        let h_dellpost = '<div style="text-align:center;border-radius:2px;padding:3px;background-color:rgb(240, 240, 240);margin-bottom:3px;">Delete Post</div>';
+		    h_dellpost += '<div style="text-align:center;border-radius:2px;padding:3px;background-color:rgb(240, 240, 240);margin-top:4px;"><button style="width:50%;background-color:rgb(240, 240, 240);border:none;border-radius:2px;text-decoration:none;"><font id="process">~~</font></button><button style="width:50%;background-color:rgb(240, 240, 240);border:none;border-radius:2px;text-decoration:none;">Deleted : <font id="ok" style="color:green;">0</font></button></div>';
+
+        dc.getElementById('div_btn').innerHTML = h_btn;
+        dc.getElementById('div_html').innerHTML = h_conv;
+
+        window.dan = {
+            btn_panel: function(x) {
+                dan.clearinter();
+                const btn_name = dc.getElementsByName('btnMenu');
+                for (let i = 0; i < btn_name.length; i++) {
+                    if (btn_name[i].getAttribute('id') === x) {
+                        dc.getElementsByName('btnMenu')[i].setAttribute('style', 'width:150px;margin-bottom:3px;text-align:center;padding:3px;border:1px solid rgb(88, 214, 141);background-color:rgb(88, 214, 141);');
+                    } else {
+                        dc.getElementsByName('btnMenu')[i].setAttribute('style', 'width:150px;margin-bottom:3px;text-align:center;padding:3px;border:1px solid rgb(240, 240, 240);background-color:rgb(240, 240, 240);');
+                    }
+                }
+                if (x === 'btn1') {
+                    dc.getElementById('div_html').innerHTML = h_conv;
+                } else if (x === 'btn2') {
+                    dc.getElementById('div_html').innerHTML = h_grab;
+                } else if (x === 'btn3') {
+                    dc.getElementById('div_html').innerHTML = h_foll;
+                } else if (x === 'btn4') {
+					if (confirm('Are you sure you want to delete?')) {
+						dc.getElementById('div_html').innerHTML = h_dellbio;
+						dc.getElementById('process').innerHTML = 'Processing';
+						dan.dellBio();
+					} else {
+						dc.getElementById('div_html').innerHTML = h_dellbio;
+						dc.getElementById('process').innerHTML = 'Canceled';
+					}
+                } else if (x === 'btn5') {
+					if (confirm('Are you sure you want to delete?')) {
+						dc.getElementById('div_html').innerHTML = h_dellpost;
+						dc.getElementById('process').innerHTML = 'Collecting : 0';
+						dan.dellPost();
+					} else {
+						dc.getElementById('div_html').innerHTML = h_dellpost;
+						dc.getElementById('process').innerHTML = 'Canceled';
+					}
+                }
+            },
+            convert: function(x) {
+                dan.rp_blank('inp');
+                const a = dan.passing('inp');
+                let i = 0, ok = 1, err = 1;
+                if (a !== 0) {
+                    dc.getElementById(x).innerHTML = '<b>Running</b>';
+                    dc.getElementById('touid').setAttribute('disabled', '');
+                    dc.getElementById('touname').setAttribute('disabled', '');
+                    loader();
+                    function loader() {
+                        if (i < a.length) {
+                            if (x === 'touid') {
+                                const attr = a[i];
+                                const data = {'fb_api_req_friendly_name': 'BarcelonaUsernameHoverCardImplQuery', 'variables': `{"username":"${attr}"}`, 'doc_id': '6294229744032325', ... asyncParams};
+                                dan.ajax('POST', '/api/graphql', data, attr, function(q, w) {
+                                    if (w && w.data && w.data.xdt_user_by_username && w.data.xdt_user_by_username.pk) {
+                                        dc.getElementById('out').value += w.data.xdt_user_by_username.pk + '\n';
+                                        dc.getElementById('ok').innerHTML = ok++;
+                                        audio_sukses.play();
+                                    } else {
+                                        dc.getElementById('err').innerHTML = err++;
+                                        audio_gagal.play();
+                                    }
+                                    loader();
+                                });
+                            } else if (x === 'touname') {
+                                const attr = a[i];
+                                const data = {'fb_api_req_friendly_name': 'BarcelonaProfilePageQuery', 'variables': `{"userID":"${attr}","__relay_internal__pv__BarcelonaIsSableEnabledrelayprovider":false,"__relay_internal__pv__BarcelonaIsLoggedInrelayprovider":true,"__relay_internal__pv__BarcelonaShouldShowFediverseM075Featuresrelayprovider":false}`, 'doc_id': '7338049662898007', ... asyncParams};
+                                dan.ajax('POST', '/api/graphql', data, attr, function(q, w) {
+                                    if (w && w.data && w.data.user && w.data.user.username) {
+                                        dc.getElementById('out').value += w.data.user.username + '\n';
+                                        dc.getElementById('ok').innerHTML = ok++;
+                                        audio_sukses.play();
+                                    } else {
+                                        dc.getElementById('err').innerHTML = err++;
+                                        audio_gagal.play();
+                                    }
+                                    loader();
+                                });
+                            }
+                            i++;
+                            dc.getElementById('process').innerHTML = i + ' / ' + a.length;
+                        } else {
+                            audio_selesai.play();
+                            dc.getElementById(x).innerHTML = '<b>Done</b>';
+                        }
+                    }
+                }
+            },
+            grab: function(x) {
+                dan.rp_blank('inp');
+                const a = dan.passing('inp');
+                let i = 0;
+                if (a !== 0) {
+                    dc.getElementById(x).innerHTML = '<b>Running</b>';
+                    dc.getElementById('followers').setAttribute('disabled', '');
+                    dc.getElementById('following').setAttribute('disabled', '');
+                    dc.getElementById('likers').setAttribute('disabled', '');
+                    loader();
+                    function loader() {
+                        if (i < a.length) {
+                            if (x === 'followers' || x === 'following') {
+                                grabfollow(a[i], '');
+                            }
+                            if (x === 'likers') {
+								const data = {'route_url': `/t/post/${a[i]}`, ... asyncParams};
+                                dan.ajax('POST', '/ajax/navigation/', data, a[i], function(q, w) {
+                                    if (w && w.payload && w.payload.payload && w.payload.payload.result && w.payload.payload.result.redirect_result && w.payload.payload.result.redirect_result.exports && w.payload.payload.result.redirect_result.exports.rootView && w.payload.payload.result.redirect_result.exports.rootView.props && w.payload.payload.result.redirect_result.exports.rootView.props.post_id) {
+                                        grablikers(w.payload.payload.result.redirect_result.exports.rootView.props.post_id, '');
+                                    } else {
+                                        loader();
+                                    }
+                                });
+							}
+                            i++;
+                            dc.getElementById('process').innerHTML = i + ' / ' + a.length
+                        } else {
+                            audio_selesai.play();
+                            dc.getElementById(x).innerHTML = '<b>Done</b>';
+                        }
+                    }
+                    function grabfollow(input, next) {
+                        const data_followers = {'fb_api_req_friendly_name': 'BarcelonaFriendshipsFollowersTabRefetchableQuery', 'variables': `{"after":"${next}","before":null,"count":20,"first":0,"last":null,"userID":"${input}","__relay_internal__pv__BarcelonaIsLoggedInrelayprovider":false}`, 'doc_id': '6615219665191418', ... asyncParams};
+                        const data_following = {'fb_api_req_friendly_name': 'BarcelonaFriendshipsFollowingTabRefetchableQuery', 'variables': `{"after":"${next}","before":null,"count":20,"first":0,"last":null,"userID":"${input}","__relay_internal__pv__BarcelonaIsLoggedInrelayprovider":false}`, 'doc_id': '6602037909881597', ... asyncParams};
+                        if (x === 'followers') {
+                            dan.ajax('POST', '/api/graphql', data_followers, input, function(q, w) {
+                                if (w && w.data && w.data.followers && w.data.followers.edges) {
+                                    for (var d = 0; d < w.data.followers.edges.length; d++) {
+                                        dc.getElementById('out').value += w.data.followers.edges[d].node.pk + '\n';
+                                    }
+                                    if (w && w.data && w.data.followers && w.data.followers.page_info && w.data.followers.page_info.has_next_page === true) {
+                                        grabfollow(input, w.data.followers.page_info.end_cursor);
+                                    } else {
+                                        loader();
+                                    }
+                                    dc.getElementById('count').innerHTML = 'Followers: ' + (dc.getElementById('out').value.split('\n').length - 1);
+                                } else {
+									dc.getElementById(x).setAttribute('style', 'text-align:center;border:0px;border-radius:2px;padding:3px 10px;background-color:red;color:white;');
+                                    dc.getElementById(x).innerHTML = '<b>Failed</b>';
+                                    audio_gagal.play();
+                                }
+                            });
+                        }
+                        if (x === 'following') {
+                            dan.ajax('POST', '/api/graphql', data_following, input, function(q, w) {
+                                if (w && w.data && w.data.following && w.data.following.edges) {
+									for (var d = 0; d < w.data.following.edges.length; d++) {
+										dc.getElementById('out').value += w.data.following.edges[d].node.pk + '\n';
+									}
+                                    if (w && w.data && w.data.following && w.data.following.page_info && w.data.following.page_info.has_next_page === true) {
+                                        grabfollow(input, w.data.following.page_info.end_cursor);
+                                    } else {
+                                        loader();
+                                    }
+                                    dc.getElementById('count').innerHTML = 'Following: ' + (dc.getElementById('out').value.split('\n').length - 1);
+                                } else {
+									dc.getElementById(x).setAttribute('style', 'text-align:center;border:0px;border-radius:2px;padding:3px 10px;background-color:red;color:white;margin-left:3px;');
+                                    dc.getElementById(x).innerHTML = '<b>Failed</b>';
+                                    audio_gagal.play();
+                                }
+                            });
+                        }
+                    }
+                    function grablikers(input, next) {
+                        const data = {'fb_api_req_friendly_name': 'BarcelonaFeedbackHubTabContentRefetchableQuery', 'variables': `{"after":"${next}","first":20,"post_id":"${input}","sort_type":"most_recent","tab_type":"like"}`, 'doc_id': '7450939191585285', ... asyncParams};
+                        dan.ajax('POST', '/api/graphql', data, input, function(q, w) {
+                            if (w && w.data && w.data.feedback_hub_tab_items && w.data.feedback_hub_tab_items.edges) {
+								for (var d = 0; d < w.data.feedback_hub_tab_items.edges.length; d++) {
+                                    dc.getElementById('out').value += w.data.feedback_hub_tab_items.edges[d].node.pk + '\n';
+                                }
+                                if (w && w.data && w.data.feedback_hub_tab_items && w.data.feedback_hub_tab_items.page_info && w.data.feedback_hub_tab_items.page_info.has_next_page === true) {
+                                    grablikers(input, w.data.feedback_hub_tab_items.page_info.end_cursor);
+                                } else {
+                                    loader();
+                                }
+                                dc.getElementById('count').innerHTML = 'Likers: ' + (dc.getElementById('out').value.split('\n').length - 1);
+                            } else {
+								dc.getElementById(x).setAttribute('style', 'text-align:center;border:0px;border-radius:2px;padding:3px 10px;background-color:red;color:white;margin-left:3px;');
+                                dc.getElementById(x).innerHTML = '<b>Failed</b>';
+                                audio_gagal.play();
+                            }
+                        });
+                    }
+                }
+            },
+            follow: function(x) {
+                dan.rp_blank('inp');
+                const a = dan.passing('inp');
+                const b = dc.getElementById('delay').value;
+                let i = 0, ok = 1, err = 1;
+                if (a !== 0) {
+                    dc.getElementById(x).innerHTML = '<b>Running</b>';
+                    dc.getElementById(x).setAttribute('disabled', '');
+                    var interval = setInterval(function() {
+                        if (i < a.length) {
+                            const data = {'fb_api_req_friendly_name': 'useBarcelonaFollowMutationFollowMutation', 'variables': `{"target_user_id":"${a[i]}"}`, 'doc_id': '6240353742756860', ... asyncParams};
+                            dan.ajax('POST', '/api/graphql', data, a[i], function(q, w) {
+                                if (w && w.data && w.data.data && w.data.data.friendship_status) {
+                                    if (w.data.data.friendship_status.following === true && w.data.data.friendship_status.outgoing_request === false) {
+                                        dc.getElementById('out').value += '\n' + q + ' - Success';
+                                        dc.getElementById('ok').innerHTML = ok++;
+                                        audio_sukses.play();
+                                    } else if (w.data.data.friendship_status.following === false && w.data.data.friendship_status.outgoing_request === true) {
+                                        dc.getElementById('out').value += '\n' + q + ' - Private {requested}';
+                                        dc.getElementById('ok').innerHTML = ok++;
+                                        audio_sukses.play();
+                                    }
+                                } else {
+                                    dc.getElementById('out').value += '\n' + q + ' - Failed';
+                                    dc.getElementById('err').innerHTML = err++;
+                                    audio_gagal.play();
+                                }
+                                dan.rp_blank('out');
+                                dan.scroll();
+                            });
+                            i++;
+                            dc.getElementById('process').innerHTML = i + ' / ' + a.length;
+                        } else {
+                            clearInterval(interval);
+                            audio_selesai.play();
+                            dc.getElementById(x).innerHTML = '<b>Done</b>';
+                        }
+                    }, b * 1000);
+                }
+            },
+			dellBio: function() {
+                const data = {'fb_api_req_friendly_name': 'useBarcelonaEditProfileMutation', 'variables': `{"external_url":"","biography":"","is_private":false,"profile_picture_upload_id":null,"remove_profile_picture":false,"copy_ig_profile_picture_to_text_post_app":false}`, 'doc_id': '24206336782348027', ... asyncParams};
+				dan.ajax('POST', '/api/graphql', data, '', function(q, w) {
+                    if (w && w.data && w.data.data && w.data.data.status === 'SUCCESS') {
+                        dc.getElementById('process').innerHTML = '<b style="color: green;">Done</b>';
+                    } else {
+                        dc.getElementById('process').innerHTML = '<b style="color: red;">Failed</b>';
+                    }
+                });
+			},
+			dellPost: function() {
+				let tmp = [];
+				scrapePost('');
+				function scrapePost(next) {
+                    const data = {'fb_api_req_friendly_name': 'BarcelonaProfileThreadsTabRefetchableQuery', 'variables': `{"after":"${next}","before":null,"first":10,"last":null,"userID":"${me}","__relay_internal__pv__BarcelonaIsFirstPostContextLineEnabledrelayprovider":false,"__relay_internal__pv__BarcelonaIsLoggedInrelayprovider":true,"__relay_internal__pv__BarcelonaIsViewCountEnabledrelayprovider":false}`, 'doc_id': '7121417897921258', ... asyncParams};
+					dan.ajax('POST', '/api/graphql', data, '', function(q, w) {
+                        if (w && w.data && w.data.mediaData && w.data.mediaData.edges) {
+                            var raw = w.data.mediaData.edges;
+                            for (var a = 0; a < raw.length; a++) {
+                                tmp.push(raw[a].node.id);
+                            }
+                            if (w && w.data && w.data.mediaData && w.data.mediaData.page_info && w.data.mediaData.page_info.has_next_page === true) {
+                                scrapePost(w.data.mediaData.page_info.end_cursor);
+                            } else {
+                                deletePost();
+                            }
+                            dc.getElementById('process').innerHTML = 'Collecting : ' + tmp.length;
+                        } else {
+                            dc.getElementById('process').innerHTML = '<b style="color: red;">Failed</b>';
+                        }
+                    });
+				}
+                function deletePost() {
+                    let loop = 0;
+                    for (let i = 0; i < tmp.length; i++) {
+						const data = {'fb_api_req_friendly_name': 'useBarcelonaDeleteMutationMutation', 'variables': `{"mediaID":"${tmp[i]}"}`, 'doc_id': '6427431927357444', ... asyncParams};
+                        dan.ajax('POST', '/api/graphql', data, '', function(q, w) {
+                            loop++;
+                            dc.getElementById('ok').innerHTML = loop;
+                            if (loop === tmp.length) {
+                                dc.getElementById('process').innerHTML = '<b style="color: green;">Done</b>';
+                            }
+                        });
+                    }
+                }
+			},
+            igApi: function(a, b, c) {
+				var d = require('getAsyncParams')('POST');
+				a['fb_dtsg'] = d.fb_dtsg;
+                require('BarcelonaNetworkUtils').post('/api/graphql', a).then(function(res) {
+                    c(b, res);
+                }).catch(function(err) {
+                    c(b, {'error': 'error'});
+                });
+            },
+            ajax: function(a, b, c, d, e) {
+				var xhr = new XMLHttpRequest();
+				xhr.open(a, b, true);
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.setRequestHeader('x-asbd-id', '129477');
+                xhr.setRequestHeader('x-csrftoken', csrf_token);
+                xhr.setRequestHeader('x-fb-lsd', lsd);
+				xhr.setRequestHeader('x-ig-app-id', app_id);
+				xhr.onload = function() {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						const f = xhr.responseText;
+                        try {
+                            const g = JSON.parse(f.substring(f.indexOf('{'), f.lastIndexOf('}') + 1));
+                            e(d, g);
+                        } catch (err) {
+                            e(d, {'error': 'error'});
+                        }
+					} else {
+						e(d, {'error': 'error'});
+					}
+				}
+				xhr.send(new URLSearchParams(c).toString());
+            },
+            passing: function(a, b) {
+                if (a === 'inp') {
+                    const w = dc.getElementById('inp').value;
+                    if (w !== '') {
+                        const r = w.split('\n');
+                        let t = [];
+                        for (let i = 0; i < r.length; i++) {
+                            t.push(r[i])
+                        }
+                        return t
+                    } else {
+                        return 0
+                    }
+                }
+            },
+            scroll: function() {
+                dan.rp_blank('out');
+                const textArea = document.getElementById('out');
+                textArea.scrollTop = textArea.scrollHeight;
+            },
+            rp_blank: function(a) {
+                const inp = dc.getElementById(a).value.split('\n');
+                let t = [];
+                for (let i = 0; i < inp.length; i++) {
+                    if (inp[i] !== '') {
+                        t.push(inp[i])
+                    }
+                }
+                dc.getElementById(a).value = t.join('\n');
+            },
+            clearinter: function(a) {
+                for (let i = 1; i < 99999; i++) {
+                    window.clearInterval(i)
+                }
+                if (a) {
+                    dc.getElementById(a).setAttribute('onclick', '');
+                    dc.getElementById(a).innerHTML = '<b>Done</b>'
+                }
+            },
+            klos: function() {
+                dan.clearinter();
+                const element = dc.getElementById('ngonoo');
+                element.remove();
+            }
+        };
+    })();
+}
